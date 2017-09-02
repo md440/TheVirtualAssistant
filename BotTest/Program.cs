@@ -31,6 +31,19 @@ namespace BotTest
 
             Console.Write("Command> ");
 
+
+
+            //This is a change
+            Activity NewMessage1 = new Activity
+            {
+                From = new ChannelAccount(fromUser),
+                Text = "Hello",
+                Type = ActivityTypes.Message
+            };
+
+            await client.Conversations.PostActivityAsync(conversation.ConversationId, NewMessage1);
+
+
             while (true)
             {
                 string input = Console.ReadLine().Trim();
@@ -73,6 +86,11 @@ namespace BotTest
                 {
                     Console.WriteLine(activity.Text);
 
+
+                    if (activity.Text.Contains("Hello"))
+                    {
+                        Console.Write("Test Pass \n");
+                    }
                 
 
                     Console.Write("Command> ");
